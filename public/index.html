@@ -7,11 +7,58 @@
     <script src="libs/jquery.js"></script>
     <script src="libs/handlebars.js"></script>
     <script src="libs/backbone.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
 
   </head>
   <body>
-    
+    <div class="container">
+      <div class= "toc-header-wrap">
+        <header class="header">
+          <button class="createButton">Create a Book</button>
+        </header>
+        <section id="enterHere"></section>
+      </div>
+
+      <div class= "add-header-wrap">
+        <header class="header">
+          <button class="add-createButton">create a book</button>
+        </header>
+        <section class="createSection">
+          Title:<input class="createTitle">
+          <textarea class="createText"></textarea>
+          <button class="addPage">Add Page</button>
+          <button class="cancelPage">Cancel</button
+        </section>
+      </div>
+
+    </div>
+   
+
+
+
     <script src="index.js"></script>
+    <script type="x-handlebars-template" id="toc-template">
+      <div class="tocSection">
+        <div class="tocFont">Table of Contents</div>
+            <div class="tocArea">
+              {{#each this}}
+              <div>
+                <span><a href="#page/{{id}}">Page: {{id}}</a></span>
+                <span>Title:{{title}}</span>
+              </div>
+              {{/each}}
+            </div>
+        </div>
+      </div>
+    </script>
+    <script type="x-handlebars-template" id="pages-template">
+      
+      <div class="paragraphs">{{paragraphs}}</div>
+      <button><a href="#">table of contents</a></button>
+      <button>Edit this page</button>
+      <button>Delete this page</button>
+      
+    </script>
     
   </body>
 </html>

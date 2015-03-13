@@ -1,0 +1,89 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing:border-box;
+}
+.container{
+	width: 100%;
+	height: 100vh;
+}
+header{
+	background-color: black;
+}
+.header{
+	height: 49px;
+}
+section{
+
+}
+.hide{
+	display: none;
+}
+.show{
+	display: block;
+}
+.tocFont{
+	font-size: 31px;
+	width: 50%;
+	text-align: center;
+}
+.tocArea{
+	border:solid black 1px;
+	text-align: center;
+	width:50%;
+	border-radius: 6px;
+}
+.tocSection{
+	margin-left:39%;
+}
+
+
+.createButton{
+	padding: 10px;
+	border-radius: 11px;
+	margin-top: 5px;
+}
+.createButton:hover{
+	cursor: pointer;
+}
+.add-header-wrap{
+	display: none;
+}
+.createSection{
+	margin-left:25%;
+}
+.createTitle{
+	border:1px solid black;
+	margin-top: 14px;
+	width: 32%;
+	height: 24px;
+}
+textarea{
+	display: block;
+	height: 260px;
+	width: 40%;
+	border: solid black 1px;
+	margin-top: 5px;
+	margin-bottom:5px;
+}
+.addPage{
+	padding: 10px;
+	border-radius: 11px;
+}
+.cancelPage{
+	padding: 10px;
+	border-radius: 11px;
+}
+
+
+.Bella{
+	margin-left: 39%
+}
+.paragraphs{
+	border: solid black 1px;
+	text-align: center;
+	width:50%;
+	border-radius: 6px;
+}
+
+
