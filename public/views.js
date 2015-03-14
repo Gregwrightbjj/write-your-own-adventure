@@ -1,89 +1,104 @@
-var EditView = Backbone.View.extend({
-
-  events: {
-    "click #add-item-button": "clickAdd"
-  },
-
-  className: "add-item-container",
-
-  initialize: function() {
-    this.render()
-  },
-
-  render: function() {
-    this.$el.html( templates.addItem() )
-  },
-
-  editItem: function(model) {
-    this.editing = true
-
-    this.editedModel = model
-
-    $("#item-name").val(model.get("name"))
-    $("#item-description").val(model.get("description"))
-    $("#item-price").val(model.get("price"))
-
-    showForm()
-  },
-
-  clickAdd: function() {
-    var data = {
-      name: $("#item-name").val(),
-      description: $("#item-description").val(),
-      price: $("#item-price").val(),
-      group: $("#item-group").val()
-    }
-
-    $("#item-name").val("")
-    $("#item-description").val("")
-    $("#item-price").val("")
-    $("#item-group").val("Appetizer")
-
-    hideForm()
-
-    if (this.editing === true) {
-      this.editedModel.set(data, { validate: true })
-      this.editing = false
-      return
-    }
-
-    var newItem = new MenuItem(data, { validate: true })
-
-    menuItems.add(newItem)
-  }
-
-})
-
-var MenuView = Backbone.View.extend({
-
-  tagName: "li",
-
-  className: "menu-item",
-
-  events: {
-    "click .delete-item": "deleteItem",
-    "click .edit-item": "editItem"
-  },
-
-  initialize: function(model) {
+var TocView = Backbone.View.extend({
+  className: "Leila",
+  initialize: function(model){
     this.model = model
 
     this.listenTo(this.model, "change", this.render)
 
     this.render()
   },
-
-  render: function() {
-    this.$el.html( templates.menu(this.model.display()) )
-  },
-
-  deleteItem: function() {
-    this.collection.remove(this.model)
-    this.remove()
-  },
-
-  editItem: function() {
-    views.edit.editItem(this.model)
+  
+  render: function(){
+    console.log("tocview", this.data)
+    this.$el.html(templates.Toc(this.model.toJSON()) )
+      },
+  
+  update: function(data){
+    this.data = data
+    this.render()
   }
+  
+})
+
+//Pages view
+var PagesView = Backbone.View.extend({
+   className:"Bella",
+
+   events:{
+    "click .editButton": "editItem",
+    "click .deleteButton": "deleteItem" 
+
+   },
+
+  initialize: function(model){
+    this.model = model
+
+    this.listenTo(this.model, "change", this.render)
+
+    this.render()
+  },
+  
+  render: function(){
+    console.log("pages", this.data)
+    this.$el.html(templates.Pages(this.model.toJSON()) )
+  },
+  
+  update: function(data){
+    this.data = data
+    this.render()
+  },
+  deleteItem: function(){
+    console.log("b4",this.model)
+   
+   this.destroy()
+   this.render()
+  }
+})
+//Update Functions
+var updateUI = function(){
+
+  $("#enterHere").html("")
+}
+//add page
+var showAdd = function() {
+  $(".add-header-wrap").show()
+  $(".toc-header-wrap").hide()
+}
+
+var hideAdd = function() {
+  $(".add-header-wrap").hide()
+  $(".toc-header-wrap").show()
+}
+
+$(".createButton").on("click", function(){
+  showAdd()
+  
+})
+$(".cancelPage").on("click", function(){
+  $(".createTitle").val("")
+  $(".createText").val("")
+  hideAdd()
+  
+})
+$(".addPage").on("click", function(){
+  var Title = $(".createTitle").val()
+  var Textt = $(".createText").val()
+
+
+  var data = {
+    title: Title,
+    paragraphs: Textt,
+    }
+$.ajax({
+      url: "/api/page",
+      method: "POST",
+      data: {
+        title: Title,
+        paragraphs: Textt,
+      },
+      success: function(updatedTask) {
+        console.log(updatedTask)
+      }
+    })
 
 })

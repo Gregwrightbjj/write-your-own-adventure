@@ -21,7 +21,7 @@
 
       <div class= "add-header-wrap">
         <header class="header">
-          <button class="add-createButton">create a book</button>
+          
         </header>
         <section class="createSection">
           Title:<input class="createTitle">
@@ -35,7 +35,7 @@
    
 
 
-
+    <script src="views.js"></script>
     <script src="index.js"></script>
     <script type="x-handlebars-template" id="toc-template">
       <div class="tocSection">
@@ -44,7 +44,7 @@
               {{#each this}}
               <div>
                 <span><a href="#page/{{id}}">Page: {{id}}</a></span>
-                <span>Title:{{title}}</span>
+                <span>Title: {{title}}</span>
               </div>
               {{/each}}
             </div>
@@ -52,12 +52,14 @@
       </div>
     </script>
     <script type="x-handlebars-template" id="pages-template">
-      
+      <div data-id="{{id}}">
       <div class="paragraphs">{{paragraphs}}</div>
-      <button><a href="#">table of contents</a></button>
-      <button>Edit this page</button>
-      <button>Delete this page</button>
-      
+      <div class="button-container">
+      <button><a href="#">Table of Contents</a></button>
+      <button class="editButton">Edit this page</button>
+      <button class="deleteButton">Delete this page</button>
+      </div>
+      </div>
     </script>
     
   </body>
