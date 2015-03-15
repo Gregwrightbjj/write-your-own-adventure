@@ -9,14 +9,9 @@ var TocView = Backbone.View.extend({
   },
   
   render: function(){
-    console.log("tocview", this.data)
+    console.log("tocview", this.model)
     this.$el.html(templates.Toc(this.model.toJSON()) )
       },
-  
-  update: function(data){
-    this.data = data
-    this.render()
-  }
   
 })
 
@@ -39,27 +34,38 @@ var PagesView = Backbone.View.extend({
   },
   
   render: function(){
-    console.log("pages", this.data)
+    console.log("pages", this.model)
     this.$el.html(templates.Pages(this.model.toJSON()) )
   },
   
-  update: function(data){
-    this.data = data
-    this.render()
-  },
   deleteItem: function(){
-    console.log("b4",this.model)
+    // a = this.attributes.id
+    // b = book.get(a).cid
+    
+    console.log("cid", this.model.cid)
+    this.model.destroy()
    
-   this.destroy()
-   this.render()
+  },
+  editItem:function(){
+
+    showAdd()
+    editButton()
+    console.log(this.model.get("title"))
+    $(".createTitle").val(this.model.get("title"))
+    $(".createText").val(this.model.get("paragraphs"))
   }
 })
-//Update Functions
-var updateUI = function(){
 
-  $("#enterHere").html("")
-}
 //add page
+
+
+$(".backButton").on("click", function(){
+  location.reload()
+})
+var editButton = function(){
+  $(".editPage").show()
+  $(".addPage").hide()
+}
 var showAdd = function() {
   $(".add-header-wrap").show()
   $(".toc-header-wrap").hide()
@@ -88,6 +94,7 @@ $(".addPage").on("click", function(){
   var data = {
     title: Title,
     paragraphs: Textt,
+    pageNumber: this.model
     }
 $.ajax({
       url: "/api/page",

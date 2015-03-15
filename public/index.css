@@ -46,7 +46,18 @@ section{
 .createButton:hover{
 	cursor: pointer;
 }
+.backButton{
+	padding: 10px;
+	border-radius: 11px;
+	margin-top: 5px;
+}
+.backButton:hover{
+cursor: pointer:;
+}
 .add-header-wrap{
+	display: none;
+}
+.edit-header-wrap{
 	display: none;
 }
 .createSection{
@@ -70,6 +81,11 @@ textarea{
 	padding: 10px;
 	border-radius: 11px;
 }
+.editPage{
+	display: none;
+	padding: 10px;
+	border-radius: 11px;
+}
 .cancelPage{
 	padding: 10px;
 	border-radius: 11px;
@@ -84,6 +100,7 @@ textarea{
 	text-align: center;
 	width:50%;
 	border-radius: 6px;
+	height: 60px;
 }
 
 

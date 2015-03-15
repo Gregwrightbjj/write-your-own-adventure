@@ -37,8 +37,9 @@ var Router = Backbone.Router.extend({
 	
 
 	specificPage: function(pageNumber){
+
 	views.pages = new PagesView(book.get(pageNumber)) 
-	$("#enterHere").html(views.pages.$el)
+	 $("#enterHere").html(views.pages.$el)
 	}
 })
 
@@ -48,19 +49,13 @@ $(document).on("ready", function(){
 	
 	templates ={
 		Toc: Handlebars.compile($("#toc-template").text() ),
-		Pages: Handlebars.compile($("#pages-template").text() )
+		Pages: Handlebars.compile($("#pages-template").text() ),
+		Edit: Handlebars.compile($("#edit-template").text())
 
 	}
 
-	//Pages view instance
-	//views.pages = new PagesView()
-	
-	//Toc view instance 
-	//views.toc = new TocView() 
 	//new Router
 	var router = new Router()
-	//creates date
-
 	
 
 	book.fetch({
@@ -68,5 +63,6 @@ $(document).on("ready", function(){
 			Backbone.history.start()
 		}
 	})
+	
 	
 })

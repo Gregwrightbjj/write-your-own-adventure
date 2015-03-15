@@ -21,14 +21,20 @@
 
       <div class= "add-header-wrap">
         <header class="header">
-          
+          <button class="backButton">Back</button>
         </header>
         <section class="createSection">
           Title:<input class="createTitle">
           <textarea class="createText"></textarea>
           <button class="addPage">Add Page</button>
+          <button class="editPage">Edit Page</button>
           <button class="cancelPage">Cancel</button
         </section>
+      
+      </div>
+
+      <div class="edit-header-wrap">
+
       </div>
 
     </div>
@@ -51,6 +57,8 @@
         </div>
       </div>
     </script>
+    
+
     <script type="x-handlebars-template" id="pages-template">
       <div data-id="{{id}}">
       <div class="paragraphs">{{paragraphs}}</div>
@@ -60,6 +68,21 @@
       <button class="deleteButton">Delete this page</button>
       </div>
       </div>
+    </script>
+
+
+
+     <script type="x-handlebars-template" id="edit-template">
+       <header class="header">
+          <button class="backButton">Back</button>
+        </header>
+        <section class="createSection">
+          Title:<input class="createTitle">
+          <textarea class="createText"></textarea>
+          <button class="addPage">Add Page</button>
+          <button class="editPage">Edit Page</button>
+          <button class="cancelPage">Cancel</button
+        </section>
     </script>
     
   </body>
