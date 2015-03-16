@@ -1,3 +1,4 @@
+//TOC view page
 var TocView = Backbone.View.extend({
   className: "Leila",
   initialize: function(model){
@@ -17,11 +18,14 @@ var TocView = Backbone.View.extend({
 
 //Pages view
 var PagesView = Backbone.View.extend({
+   
    className:"Bella",
 
    events:{
     "click .editButton": "editItem",
-    "click .deleteButton": "deleteItem" 
+    "click .deleteButton": "deleteItem" ,
+    //edit page events
+    "click .cancelPage": "cancelItem"
 
    },
 
@@ -43,29 +47,53 @@ var PagesView = Backbone.View.extend({
     // b = book.get(a).cid
     
     console.log("cid", this.model.cid)
-    this.model.destroy()
+    //this.model.destroy()
    
   },
   editItem:function(){
-
-    showAdd()
-    editButton()
+    showEdit()
     console.log(this.model.get("title"))
     $(".createTitle").val(this.model.get("title"))
     $(".createText").val(this.model.get("paragraphs"))
+    var data = {
+      title: $(".createTitle").val(),
+      paragraphs: $(".createText").val(),
+      }
+    // $(".editPage").on("click", function(){
+    //   console.log(this)
+    // })
+  },
+  cancelItem:function(){
+    hideEdit()
   }
 })
 
+
+
+//Edit page
+var showEdit = function(){
+  $(".editSection").show()
+  $(".pageSection").hide()
+  $(".createButton").hide()
+  $(".backButton").show()
+
+}
+var hideEdit = function(){
+  $(".editSection").hide()
+  $(".pageSection").show()
+  $(".createButton").show()
+  $(".backButton").hide()
+}
+$(".backButton1").on("click", function(){
+  location.reload()
+})
+
+
 //add page
-
-
 $(".backButton").on("click", function(){
   location.reload()
 })
-var editButton = function(){
-  $(".editPage").show()
-  $(".addPage").hide()
-}
+
 var showAdd = function() {
   $(".add-header-wrap").show()
   $(".toc-header-wrap").hide()
