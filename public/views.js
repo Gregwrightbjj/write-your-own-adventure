@@ -25,7 +25,8 @@ var PagesView = Backbone.View.extend({
     "click .editButton": "editItem",
     "click .deleteButton": "deleteItem" ,
     //edit page events
-    "click .cancelPage": "cancelItem"
+    "click .cancelPage": "cancelItem",
+    "click .editPage": "editPage"
 
    },
 
@@ -46,22 +47,31 @@ var PagesView = Backbone.View.extend({
     // a = this.attributes.id
     // b = book.get(a).cid
     
-    console.log("cid", this.model.cid)
-    //this.model.destroy()
+    // console.log("cid", this.model.cid)
+    this.model.destroy()
+    
    
   },
   editItem:function(){
     showEdit()
-    console.log(this.model.get("title"))
+    console.log("model", this.model)
+    //console.log(this.model.get("title"))
     $(".createTitle").val(this.model.get("title"))
     $(".createText").val(this.model.get("paragraphs"))
+    
+    // $(".editPage").on("click", function(){
+    //    console.log()
+    //})
+  },
+  editPage:function(){
+    console.log("model2", this.model)
     var data = {
       title: $(".createTitle").val(),
       paragraphs: $(".createText").val(),
       }
-    // $(".editPage").on("click", function(){
-    //   console.log(this)
-    // })
+      this.model.save(data)
+      console.log("set", this.model)
+      this.render()
   },
   cancelItem:function(){
     hideEdit()
@@ -84,9 +94,7 @@ var hideEdit = function(){
   $(".createButton").show()
   $(".backButton").hide()
 }
-$(".backButton1").on("click", function(){
-  location.reload()
-})
+
 
 
 //add page
@@ -106,6 +114,7 @@ var hideAdd = function() {
 
 $(".createButton").on("click", function(){
   showAdd()
+   $(".backButton").show()
   
 })
 $(".cancelPage").on("click", function(){
@@ -135,5 +144,7 @@ $.ajax({
         console.log(updatedTask)
       }
     })
+
+  location.reload()
 
 })
